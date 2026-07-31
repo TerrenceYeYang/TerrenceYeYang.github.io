@@ -31,6 +31,51 @@ import { dirname, join } from 'node:path';
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const BUNDLE = join(root, 'index.html');
 const SOURCE = join(root, 'src', 'home.html');
+const DATA = join(root, 'src', 'site.json');
+
+// src/site.json is the single source of truth for the projects: the page renders
+// them from here, and the MCP server (mcp/src/index.mjs) serves the same file, so
+// what an agent is told and what a visitor reads can't drift apart.
+const REGION =
+  /(^[ \t]*\/\/ ── generated from src\/site\.json.*$)([\s\S]*?)(^[ \t]*\/\/ ── end generated ──$)/m;
+
+// Prose lives in the markup rather than the JSON — injecting it would mean
+// escaping HTML into a JS string for no gain. It is still checked below, so a
+// rewritten headline can't silently leave the MCP server describing the old one.
+const PROSE = ['headline', 'summary'];
+
+function literal(value, indent) {
+  const pad = ' '.repeat(indent);
+  return JSON.stringify(value, null, 2)
+    .split('\n')
+    .map((line, i) => (i === 0 ? line : pad + line))
+    .join('\n');
+}
+
+function injectData(template, site) {
+  if (!REGION.test(template)) {
+    throw new Error('no "generated from src/site.json" region in src/home.html');
+  }
+  const body =
+    `\n    const projects = ${literal(site.projects, 4)};\n` +
+    `    const focusAreas = ${literal(site.focusAreas, 4)};\n`;
+  return template.replace(REGION, (_, open, __, close) => open + body + close);
+}
+
+// Whitespace and <br> are layout, not content — compare the words only.
+const words = (s) => s.replace(/<br\s*\/?>/gi, ' ').replace(/\s+/g, ' ').trim();
+
+function checkProse(template, site) {
+  const haystack = words(template);
+  const missing = [];
+  for (const key of PROSE) {
+    if (!haystack.includes(words(site.profile[key]))) missing.push(`profile.${key}`);
+  }
+  site.profile.about.forEach((para, i) => {
+    if (!haystack.includes(words(para))) missing.push(`profile.about[${i}]`);
+  });
+  return missing;
+}
 
 // The template slot. Non-greedy is safe: the encoded payload can never contain
 // a literal "</script>" — that is the whole point of the escaping above.
@@ -56,7 +101,22 @@ if (mode === '--extract') {
   process.exit(0);
 }
 
-const template = readFileSync(SOURCE, 'utf8');
+const site = JSON.parse(readFileSync(DATA, 'utf8'));
+const authored = readFileSync(SOURCE, 'utf8');
+const template = injectData(authored, site);
+
+const drifted = checkProse(template, site);
+if (drifted.length) {
+  console.error(
+    `src/site.json prose no longer appears in src/home.html: ${drifted.join(', ')}\n` +
+      'The MCP server serves these strings — update the JSON to match the page.',
+  );
+  process.exit(1);
+}
+
+// Keep the authored file in sync too, so the data you read in src/home.html is
+// the data that shipped.
+if (template !== authored && mode !== '--check') writeFileSync(SOURCE, template);
 
 if (!template.startsWith('<!DOCTYPE html>')) {
   console.error('src/home.html must begin with <!DOCTYPE html> — anything before it forces quirks mode');

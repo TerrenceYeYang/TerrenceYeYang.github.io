@@ -610,46 +610,188 @@
 <script type="text/x-dc" data-dc-script="" data-props="{&quot;$preview&quot;: {&quot;width&quot;: 1440, &quot;height&quot;: 1000}, &quot;accentColor&quot;: {&quot;editor&quot;: &quot;color&quot;, &quot;default&quot;: &quot;#9a9a92&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;options&quot;: [&quot;#9a9a92&quot;, &quot;#b8b2a4&quot;, &quot;#7d8078&quot;, &quot;#a89f8c&quot;]}, &quot;denseMode&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: false, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Layout&quot;}, &quot;showStats&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Layout&quot;}}">
 class Component extends DCLogic {
   renderVals() {
+    // ── generated from src/site.json by tools/build.mjs — edit the JSON, not this ──
     const projects = [
-      { num: "01", id: "proj-possonto", thumbId: "thumb-possonto", anchor: "#proj-possonto", name: "PossOnto", tagline: "Agentic RAG · High-Accountability Domains",
-        description: "An agentic RAG that navigates knowledge graphs instead of retrieving fixed chunks — built to know when the source doesn't support an answer, and to escalate rather than guess. Demonstrated on a fictional bank's dispute-resolution policy.",
-        stack: ["Agentic RAG", "Knowledge Graphs", "Auditability"], stars: 1, repoUrl: "https://github.com/TerrenceYeYang/PossOnto", liveUrl: null,
-        thumbSrc: "assets/thumbs/possonto-acme-bank-coverage-network.webp" },
-      { num: "02", id: "proj-aiz", thumbId: "thumb-aiz", anchor: "#proj-aiz", name: "AI-Z", tagline: "Desktop AI Benchmark Dashboard",
-        description: "A desktop dashboard for measuring how local and cloud model runtimes handle repeatable text-generation workloads — time-to-first-token, tokens/sec, and system telemetry across LM Studio and Ollama.",
-        stack: ["Benchmarking", "LM Studio", "Ollama"], stars: 5, repoUrl: "https://github.com/TerrenceYeYang/AI-Z", liveUrl: null,
-        thumbSrc: "assets/thumbs/aiz-cloud-b002-run.webp" },
-      { num: "03", id: "proj-aicannot", thumbId: "thumb-aicannot", anchor: "#proj-aicannot", name: "AICANNOT", tagline: "Things AI Can't Do",
-        description: "A community-driven catalog where anyone can ask what AI still can't do, and anyone can answer — built with server actions and rate-limited anti-abuse from day one.",
-        stack: ["Next.js", "Prisma", "Postgres"], stars: 0, repoUrl: "https://github.com/TerrenceYeYang/AICANNOT", liveUrl: "https://thingsaicantdo.vercel.app/",
-        thumbSrc: "assets/thumbs/aicannot-live-site-preview.webp" },
-      { num: "04", id: "proj-humanz", thumbId: "thumb-humanz", anchor: "#proj-humanz", name: "Human-Z", tagline: "Human Only",
-        description: "A companion thread to AI-Z's benchmark work, tracking what remains distinctly human against the growing capability of machine runtimes.",
-        stack: ["Research", "Benchmarking"], stars: 0, repoUrl: "https://github.com/TerrenceYeYang/Human-Z", liveUrl: "https://github.com/TerrenceYeYang/Human-Z/discussions", liveLabel: "Discussions ↗", thumbSrc: "",
-        posts: [
-          { title: "LLM-X Global Benchmark Series", date: "15 July 2026", category: "Programming Challenge", difficulty: "Hardcore", ago: "3 days ago" },
-          { title: "AI-Z Günlük Test Sorusu", date: "14 Temmuz 2026", category: "Genel Bilgi Sorusu", difficulty: "Kolay", ago: "4 days ago" },
-          { title: "AI-Z Daily Benchmark Test", date: "13 July 2026", category: "General Knowledge & Reasoning", difficulty: "Hard", ago: "5 days ago" },
-          { title: "AI-Z Günlük Test Sorusu", date: "12 Temmuz 2026", category: "Şiir Oluşturma", difficulty: "Zor", ago: "last week" },
-          { title: "AI-Z Prova quotidiana", date: "11 luglio 2026", category: "Programmazione", difficulty: "Facile", ago: "last week" }
-        ] },
-      { num: "05", id: "proj-vla", thumbId: "thumb-vla", anchor: "#proj-vla", name: "VLA", tagline: "Vision-Language-Action",
-        description: "Early-stage exploration into vision-language-action models — grounding perception and language in embodied action.",
-        stack: ["VLA", "Multimodal"], stars: 0, repoUrl: "https://github.com/TerrenceYeYang/VLA", liveUrl: null, thumbSrc: "", graphic: "vla" },
-      { num: "06", id: "proj-evo", thumbId: "thumb-evo", anchor: "#proj-evo", name: "EVO", tagline: "EVO DNA Atlas",
-        description: "A public evidence repository supporting the EVO DNA Atlas — collecting and organizing genomic evidence for open review.",
-        stack: ["Genomics", "Evidence"], stars: 0, repoUrl: "https://github.com/TerrenceYeYang/EVO", liveUrl: "https://terrenceyeyang.github.io/EVO/", liveLabel: "Atlas ↗",
-        thumbSrc: "assets/thumbs/evo-dna-atlas-social.webp" },
-      { num: "07", id: "proj-chipspot", thumbId: "thumb-chipspot", anchor: "#proj-chipspot", name: "ChipSpot Cloud", tagline: "B2B Sourcing · Evidence-Bound Answers",
-        description: "The public edge of an AI-native technical sourcing tool for electronic components: a requirement becomes a sourcing list of exact part numbers, each bound to official QVL/AVL evidence — and when the platform identity is missing, it says so instead of guessing. A Cloudflare Worker serves the case browser and holds no keys; evidence, models, and the reasoning path stay on a separately operated local engine.",
-        stack: ["Cloudflare Workers", "Zero-Key Boundary", "QVL/AVL Evidence"], stars: 0, repoUrl: "https://github.com/TerrenceYeYang/ChipSpot-Cloud", liveUrl: "https://app.chipspot.workers.dev", liveLabel: "Live ↗",
-        thumbSrc: "assets/thumbs/chipspot-cloud-9955hx-sourcing-case.webp" }
+      {
+        "num": "01",
+        "id": "proj-possonto",
+        "thumbId": "thumb-possonto",
+        "anchor": "#proj-possonto",
+        "name": "PossOnto",
+        "tagline": "Agentic RAG · High-Accountability Domains",
+        "description": "An agentic RAG that navigates knowledge graphs instead of retrieving fixed chunks — built to know when the source doesn't support an answer, and to escalate rather than guess. Demonstrated on a fictional bank's dispute-resolution policy.",
+        "stack": [
+          "Agentic RAG",
+          "Knowledge Graphs",
+          "Auditability"
+        ],
+        "stars": 1,
+        "repoUrl": "https://github.com/TerrenceYeYang/PossOnto",
+        "liveUrl": null,
+        "thumbSrc": "assets/thumbs/possonto-acme-bank-coverage-network.webp"
+      },
+      {
+        "num": "02",
+        "id": "proj-aiz",
+        "thumbId": "thumb-aiz",
+        "anchor": "#proj-aiz",
+        "name": "AI-Z",
+        "tagline": "Desktop AI Benchmark Dashboard",
+        "description": "A desktop dashboard for measuring how local and cloud model runtimes handle repeatable text-generation workloads — time-to-first-token, tokens/sec, and system telemetry across LM Studio and Ollama.",
+        "stack": [
+          "Benchmarking",
+          "LM Studio",
+          "Ollama"
+        ],
+        "stars": 5,
+        "repoUrl": "https://github.com/TerrenceYeYang/AI-Z",
+        "liveUrl": null,
+        "thumbSrc": "assets/thumbs/aiz-cloud-b002-run.webp"
+      },
+      {
+        "num": "03",
+        "id": "proj-aicannot",
+        "thumbId": "thumb-aicannot",
+        "anchor": "#proj-aicannot",
+        "name": "AICANNOT",
+        "tagline": "Things AI Can't Do",
+        "description": "A community-driven catalog where anyone can ask what AI still can't do, and anyone can answer — built with server actions and rate-limited anti-abuse from day one.",
+        "stack": [
+          "Next.js",
+          "Prisma",
+          "Postgres"
+        ],
+        "stars": 0,
+        "repoUrl": "https://github.com/TerrenceYeYang/AICANNOT",
+        "liveUrl": "https://thingsaicantdo.vercel.app/",
+        "thumbSrc": "assets/thumbs/aicannot-live-site-preview.webp"
+      },
+      {
+        "num": "04",
+        "id": "proj-humanz",
+        "thumbId": "thumb-humanz",
+        "anchor": "#proj-humanz",
+        "name": "Human-Z",
+        "tagline": "Human Only",
+        "description": "A companion thread to AI-Z's benchmark work, tracking what remains distinctly human against the growing capability of machine runtimes.",
+        "stack": [
+          "Research",
+          "Benchmarking"
+        ],
+        "stars": 0,
+        "repoUrl": "https://github.com/TerrenceYeYang/Human-Z",
+        "liveUrl": "https://github.com/TerrenceYeYang/Human-Z/discussions",
+        "liveLabel": "Discussions ↗",
+        "thumbSrc": "",
+        "posts": [
+          {
+            "title": "LLM-X Global Benchmark Series",
+            "date": "15 July 2026",
+            "category": "Programming Challenge",
+            "difficulty": "Hardcore",
+            "ago": "3 days ago"
+          },
+          {
+            "title": "AI-Z Günlük Test Sorusu",
+            "date": "14 Temmuz 2026",
+            "category": "Genel Bilgi Sorusu",
+            "difficulty": "Kolay",
+            "ago": "4 days ago"
+          },
+          {
+            "title": "AI-Z Daily Benchmark Test",
+            "date": "13 July 2026",
+            "category": "General Knowledge & Reasoning",
+            "difficulty": "Hard",
+            "ago": "5 days ago"
+          },
+          {
+            "title": "AI-Z Günlük Test Sorusu",
+            "date": "12 Temmuz 2026",
+            "category": "Şiir Oluşturma",
+            "difficulty": "Zor",
+            "ago": "last week"
+          },
+          {
+            "title": "AI-Z Prova quotidiana",
+            "date": "11 luglio 2026",
+            "category": "Programmazione",
+            "difficulty": "Facile",
+            "ago": "last week"
+          }
+        ]
+      },
+      {
+        "num": "05",
+        "id": "proj-vla",
+        "thumbId": "thumb-vla",
+        "anchor": "#proj-vla",
+        "name": "VLA",
+        "tagline": "Vision-Language-Action",
+        "description": "Early-stage exploration into vision-language-action models — grounding perception and language in embodied action.",
+        "stack": [
+          "VLA",
+          "Multimodal"
+        ],
+        "stars": 0,
+        "repoUrl": "https://github.com/TerrenceYeYang/VLA",
+        "liveUrl": null,
+        "thumbSrc": "",
+        "graphic": "vla"
+      },
+      {
+        "num": "06",
+        "id": "proj-evo",
+        "thumbId": "thumb-evo",
+        "anchor": "#proj-evo",
+        "name": "EVO",
+        "tagline": "EVO DNA Atlas",
+        "description": "A public evidence repository supporting the EVO DNA Atlas — collecting and organizing genomic evidence for open review.",
+        "stack": [
+          "Genomics",
+          "Evidence"
+        ],
+        "stars": 0,
+        "repoUrl": "https://github.com/TerrenceYeYang/EVO",
+        "liveUrl": "https://terrenceyeyang.github.io/EVO/",
+        "liveLabel": "Atlas ↗",
+        "thumbSrc": "assets/thumbs/evo-dna-atlas-social.webp"
+      },
+      {
+        "num": "07",
+        "id": "proj-chipspot",
+        "thumbId": "thumb-chipspot",
+        "anchor": "#proj-chipspot",
+        "name": "ChipSpot Cloud",
+        "tagline": "B2B Sourcing · Evidence-Bound Answers",
+        "description": "The public edge of an AI-native technical sourcing tool for electronic components: a requirement becomes a sourcing list of exact part numbers, each bound to official QVL/AVL evidence — and when the platform identity is missing, it says so instead of guessing. A Cloudflare Worker serves the case browser and holds no keys; evidence, models, and the reasoning path stay on a separately operated local engine.",
+        "stack": [
+          "Cloudflare Workers",
+          "Zero-Key Boundary",
+          "QVL/AVL Evidence"
+        ],
+        "stars": 0,
+        "repoUrl": "https://github.com/TerrenceYeYang/ChipSpot-Cloud",
+        "liveUrl": "https://app.chipspot.workers.dev",
+        "liveLabel": "Live ↗",
+        "thumbSrc": "assets/thumbs/chipspot-cloud-9955hx-sourcing-case.webp"
+      }
     ];
     const focusAreas = [
-      { title: "Agentic Retrieval", desc: "Graph-navigating RAG for regulated, high-accountability domains." },
-      { title: "Applied Benchmarking", desc: "Measuring real inference behavior across local and cloud runtimes." },
-      { title: "Trustworthy Systems", desc: "Systems that surface uncertainty instead of hiding it." }
+      {
+        "title": "Agentic Retrieval",
+        "desc": "Graph-navigating RAG for regulated, high-accountability domains."
+      },
+      {
+        "title": "Applied Benchmarking",
+        "desc": "Measuring real inference behavior across local and cloud runtimes."
+      },
+      {
+        "title": "Trustworthy Systems",
+        "desc": "Systems that surface uncertainty instead of hiding it."
+      }
     ];
+    // ── end generated ──
     const mapped = projects.map(p => ({ ...p, showThumb: !p.posts && !p.graphic, showVlaGraphic: p.graphic === "vla", postCount: p.posts ? p.posts.length + " open" : null, liveLabel: p.liveLabel ?? "Live ↗" }));
     return {
       accent: this.props.accentColor ?? "#9a9a92",

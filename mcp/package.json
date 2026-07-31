@@ -1,0 +1,15 @@
+{
+  "name": "homepage-mcp",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "MCP server for terrenceyeyang.github.io — serves the same src/site.json the page renders from",
+  "scripts": {
+    "test": "node --test test/mcp.test.mjs",
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^4"
+  }
+}

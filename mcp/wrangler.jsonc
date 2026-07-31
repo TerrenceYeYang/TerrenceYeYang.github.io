@@ -1,0 +1,15 @@
+{
+  // Worker name决定 workers.dev 上的主机名：<name>.<account-subdomain>.workers.dev
+  // 这个账号的 subdomain 是 chipspot，所以默认部署地址是
+  //   https://homepage-mcp.chipspot.workers.dev
+  // 绑定自定义域名后（见 mcp/README.md），把 routes 取消注释即可。
+  "name": "homepage-mcp",
+  "main": "src/index.mjs",
+  "compatibility_date": "2026-07-31",
+
+  // "routes": [
+  //   { "pattern": "mcp.example.dev", "custom_domain": true }
+  // ],
+
+  "observability": { "enabled": true }
+}
