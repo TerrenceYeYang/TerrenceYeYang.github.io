@@ -444,9 +444,10 @@
       <div style="font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.04em; color:#9aa39d; margin-top:6px; text-transform:uppercase;">AI Developer &amp; Applied Researcher</div>
 
       <nav style="margin-top:44px; display:flex; flex-direction:column; gap:12px; font-family:'IBM Plex Mono', monospace; font-size:13px;">
-        <a href="#work" style="color:#eef1ec; text-decoration:none; opacity:0.85;">01 · Work</a>
-        <a href="#about" style="color:#eef1ec; text-decoration:none; opacity:0.85;">02 · About</a>
-        <a href="#contact" style="color:#eef1ec; text-decoration:none; opacity:0.85;">03 · Contact</a>
+        <a href="#news" style="color:#eef1ec; text-decoration:none; opacity:0.85;">01 · News</a>
+        <a href="#work" style="color:#eef1ec; text-decoration:none; opacity:0.85;">02 · Work</a>
+        <a href="#about" style="color:#eef1ec; text-decoration:none; opacity:0.85;">03 · About</a>
+        <a href="#contact" style="color:#eef1ec; text-decoration:none; opacity:0.85;">04 · Contact</a>
       </nav>
 
       <div style="margin-top:40px; padding-top:24px; border-top:1px solid rgba(255,255,255,0.08);">
@@ -501,8 +502,45 @@
             <div style="font-size:11.5px; color:#9aa39d; line-height:1.5;">{{ p.tagline }}</div>
           </a>
         </sc-for>
-      </div></section><section id="work" style="padding:20px clamp(20px,6vw,72px) 100px; border-top:1px solid rgba(255,255,255,0.08);">
-      <div style="font-family:'IBM Plex Mono', monospace; font-size:12px; color:#6c756e; text-transform:uppercase; letter-spacing:0.06em; margin:56px 0 8px;">01 · Work</div>
+      </div></section><section id="news" style="padding:20px clamp(20px,6vw,72px) 92px; border-top:1px solid rgba(255,255,255,0.08);">
+      <div style="font-family:'IBM Plex Mono', monospace; font-size:12px; color:#6c756e; text-transform:uppercase; letter-spacing:0.06em; margin:56px 0 8px;">01 · News</div>
+      <h2 style="font-family:'Source Serif 4', serif; font-size:32px; font-weight:600; margin:0 0 36px;">News &amp; Releases</h2>
+
+      <div style="display:flex; flex-direction:column; gap:24px; max-width:980px;">
+        <sc-for list="{{ news }}" as="item" hint-placeholder-count="1">
+          <article id="{{ item.id }}" style="background:#0f1310; border:1px solid rgba(255,255,255,0.08); padding:32px; display:flex; flex-direction:column; gap:20px; scroll-margin-top:24px;">
+            <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:12px;">
+              <div style="display:flex; flex-wrap:wrap; align-items:center; gap:12px; font-family:'IBM Plex Mono', monospace; font-size:11.5px;">
+                <span style="color:{{ accent }};">{{ item.date }}</span>
+                <span style="color:#565f59;">·</span>
+                <span style="color:#c7cdc8; border:1px solid rgba(255,255,255,0.14); padding:3px 9px; text-transform:uppercase; letter-spacing:0.04em; font-size:10.5px;">{{ item.tag }}</span>
+              </div>
+              <a href="{{ item.projectAnchor }}" style="font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:{{ accent }}; text-decoration:none;">Project · {{ item.project }} ↓</a>
+            </div>
+
+            <h3 style="font-family:'Source Serif 4', serif; font-size:clamp(20px,2.4vw,25px); font-weight:600; line-height:1.3; margin:0; color:#eef1ec;">{{ item.title }}</h3>
+
+            <p style="font-size:15px; line-height:1.72; color:#b6bdb8; margin:0;">{{ item.summary }}</p>
+
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(185px, 1fr)); gap:1px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.08);">
+              <sc-for list="{{ item.metrics }}" as="m" hint-placeholder-count="4">
+                <div style="background:#0b0e0c; padding:13px 15px; display:flex; flex-direction:column; gap:5px;">
+                  <span style="font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:#7c857e; text-transform:uppercase; letter-spacing:0.05em;">{{ m.label }}</span>
+                  <span style="font-family:'IBM Plex Mono', monospace; font-size:13px; font-weight:500; color:#eef1ec;">{{ m.value }}</span>
+                </div>
+              </sc-for>
+            </div>
+
+            <div style="display:flex; flex-wrap:wrap; gap:20px; padding-top:8px; border-top:1px solid rgba(255,255,255,0.06);">
+              <sc-for list="{{ item.links }}" as="lnk" hint-placeholder-count="2">
+                <a href="{{ lnk.url }}" target="_blank" rel="noopener" style="font-family:'IBM Plex Mono', monospace; font-size:12px; color:#eef1ec; text-decoration:none;">{{ lnk.label }}</a>
+              </sc-for>
+            </div>
+          </article>
+        </sc-for>
+      </div>
+    </section><section id="work" style="padding:20px clamp(20px,6vw,72px) 100px; border-top:1px solid rgba(255,255,255,0.08);">
+      <div style="font-family:'IBM Plex Mono', monospace; font-size:12px; color:#6c756e; text-transform:uppercase; letter-spacing:0.06em; margin:56px 0 8px;">02 · Work</div>
       <h2 style="font-family:'Source Serif 4', serif; font-size:32px; font-weight:600; margin:0 0 40px;">Selected Projects</h2>
 
       <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax({{ cardMinWidth }}px,1fr)); gap:1px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.08);">
@@ -582,7 +620,7 @@
     </section>
 
     <section id="about" style="padding:20px clamp(20px,6vw,72px) 100px; border-top:1px solid rgba(255,255,255,0.08); max-width:760px;">
-      <div style="font-family:'IBM Plex Mono', monospace; font-size:12px; color:#6c756e; text-transform:uppercase; letter-spacing:0.06em; margin:56px 0 8px;">02 · About</div>
+      <div style="font-family:'IBM Plex Mono', monospace; font-size:12px; color:#6c756e; text-transform:uppercase; letter-spacing:0.06em; margin:56px 0 8px;">03 · About</div>
       <h2 style="font-family:'Source Serif 4', serif; font-size:32px; font-weight:600; margin:0 0 24px;">About Me</h2>
       <p style="font-size:16.5px; line-height:1.8; color:#c7cdc8; margin:0 0 20px;">I split my time between applied AI research and hands-on engineering — roughly half academic, half production. My work centers on retrieval and agent systems that need to be trustworthy in domains where a confident wrong answer is costly: banking, compliance, and technical documentation.</p>
       <p style="font-size:16.5px; line-height:1.8; color:#c7cdc8; margin:0 0 32px;">Alongside that, I build tools for measuring and understanding model behavior — local benchmark dashboards, evidence repositories, and small community products — because good research needs good instruments.</p>
@@ -597,7 +635,7 @@
     </section>
 
     <section id="contact" style="padding:60px clamp(20px,6vw,72px) 120px; border-top:1px solid rgba(255,255,255,0.08);">
-      <div style="font-family:'IBM Plex Mono', monospace; font-size:12px; color:#6c756e; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:8px;">03 · Contact</div>
+      <div style="font-family:'IBM Plex Mono', monospace; font-size:12px; color:#6c756e; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:8px;">04 · Contact</div>
       <h2 style="font-family:'Source Serif 4', serif; font-size:32px; font-weight:600; margin:0 0 20px;">Get in touch</h2>
       <p style="font-size:16px; color:#c7cdc8; margin:0 0 28px; max-width:560px; line-height:1.7;">Interested in the work, or want to compare notes on agentic RAG and applied benchmarking? Reach out on GitHub.</p>
       <a href="https://github.com/TerrenceYeYang" target="_blank" rel="noopener" style="font-family:'IBM Plex Mono', monospace; font-size:14px; background:{{ accent }}; color:#0d100e; padding:14px 26px; text-decoration:none; display:inline-block;">github.com/TerrenceYeYang ↗</a>
@@ -794,6 +832,25 @@ class Component extends DCLogic {
         "liveUrl": "https://github.com/TerrenceYeYang/occ-benchmark/releases/tag/v1.0.0",
         "liveLabel": "v1.0 Binary ↗",
         "thumbSrc": "assets/thumbs/occ-light-transfer-module-v1.webp"
+      },
+      {
+        "num": "09",
+        "id": "proj-bwxpixel",
+        "thumbId": "thumb-bwxpixel",
+        "anchor": "#proj-bwxpixel",
+        "name": "bwxPixel",
+        "tagline": "Blackwell CUDA · Split-Weight AVX2",
+        "description": "An ultra-low-latency RGBX/RGBA-to-grayscale library and standalone C ABI DLL for NVIDIA Blackwell GPUs and x86-64 CPUs. Pairs 128-bit vectorized __dp4a + dual-pipe PRMT/ALU kernels (with automatic unaligned-ROI fallback) against an honest split-weight AVX2 + non-temporal CPU baseline — reporting hot-L2 (4.90 TB/s), multi-buffer cold GDDR7 (902.2 GB/s, 94% of peak), and PCIe end-to-end numbers separately, verified bit-exact across all 16,777,216 RGB colors.",
+        "stack": [
+          "CUDA / Blackwell",
+          "AVX2 SIMD",
+          "C ABI DLL"
+        ],
+        "stars": 0,
+        "repoUrl": "https://github.com/TerrenceYeYang/bwxPixel",
+        "liveUrl": "https://github.com/TerrenceYeYang/bwxPixel/blob/master/docs/BENCHMARK_RTX5080.md",
+        "liveLabel": "RTX 5080 Report ↗",
+        "thumbSrc": "assets/thumbs/bwxpixel-rtx5080-benchmark.webp"
       }
     ];
     const focusAreas = [
@@ -810,6 +867,45 @@ class Component extends DCLogic {
         "desc": "Systems that surface uncertainty instead of hiding it."
       }
     ];
+    const news = [
+      {
+        "id": "news-bwxpixel-v02",
+        "date": "25 Nov 2026",
+        "tag": "Release · Benchmark",
+        "project": "bwxPixel",
+        "projectAnchor": "#proj-bwxpixel",
+        "title": "bwxPixel v0.2.0 — Blackwell __dp4a Kernel, Split-Weight AVX2 Baseline & Memory-Hierarchy Benchmarks",
+        "summary": "Rebuilt both the CUDA and CPU paths of bwxPixel (plus a multi-arch sm_75–sm_120 C ABI DLL) and measured them on an RTX 5080 + i7-14700KF while keeping L2-resident, cold-DRAM, and PCIe round-trip regimes strictly separate. Replacing a cache-thrashing 16 MB lookup table with a split-weight [77, 51, 29, 99] AVX2 vpmaddubsw kernel and non-temporal streaming stores lifted the CPU baseline up to 27.3× (760.9 GB/s in cache; 64.2 GB/s cold DDR5). On the GPU, 128-bit vectorized __dp4a + dual-pipe PRMT/ALU kernels sustain 902.2 GB/s (94.0% of GDDR7 peak) across a >512 MiB multi-buffer ring and 4.90 TB/s (8.47 µs at 4K) in hot L2 via CUDA Graph — verified bit-exact across all 16,777,216 RGB colors and unaligned ROI pointers.",
+        "metrics": [
+          {
+            "label": "GPU Hot L2 (4K Graph)",
+            "value": "4.90 TB/s · 8.47 µs"
+          },
+          {
+            "label": "GPU Cold GDDR7",
+            "value": "902.2 GB/s · 94.0% peak"
+          },
+          {
+            "label": "CPU Split-Weight AVX2",
+            "value": "760.9 GB/s · 27.3× vs LUT"
+          },
+          {
+            "label": "Full-Gamut Verification",
+            "value": "16,777,216 RGB bit-exact"
+          }
+        ],
+        "links": [
+          {
+            "label": "RTX 5080 Report ↗",
+            "url": "https://github.com/TerrenceYeYang/bwxPixel/blob/master/docs/BENCHMARK_RTX5080.md"
+          },
+          {
+            "label": "Repository ↗",
+            "url": "https://github.com/TerrenceYeYang/bwxPixel"
+          }
+        ]
+      }
+    ];
     // ── end generated ──
     const mapped = projects.map(p => ({ ...p, showThumb: !p.posts && !p.graphic, showVlaGraphic: p.graphic === "vla", postCount: p.posts ? p.posts.length + " open" : null, liveLabel: p.liveLabel ?? "Live ↗" }));
     return {
@@ -818,7 +914,8 @@ class Component extends DCLogic {
       showStats: this.props.showStats ?? true,
       projects: mapped,
       heroProjects: mapped,
-      focusAreas
+      focusAreas,
+      news
     };
   }
 }

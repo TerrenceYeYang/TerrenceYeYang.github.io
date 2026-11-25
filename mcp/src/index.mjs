@@ -65,6 +65,8 @@ function findProject(ref) {
   );
 }
 
+const NEWS = site.news ?? [];
+
 const PROFILE = {
   name: site.profile.name,
   title: site.profile.title,
@@ -74,6 +76,7 @@ const PROFILE = {
   focusAreas: site.focusAreas,
   links: site.profile.links,
   projectCount: PROJECTS.length,
+  latestNews: NEWS,
 };
 
 // ── tools ───────────────────────────────────────────────────────────────────
@@ -180,6 +183,13 @@ const RESOURCES = [
     description: 'Bio, focus areas and links.',
     mimeType: 'application/json',
     read: () => PROFILE,
+  },
+  {
+    uri: 'homepage://news',
+    name: 'News & releases',
+    description: 'Latest release dispatches and benchmark updates.',
+    mimeType: 'application/json',
+    read: () => NEWS,
   },
   {
     uri: 'homepage://projects',

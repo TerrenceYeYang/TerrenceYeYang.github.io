@@ -58,7 +58,8 @@ function injectData(template, site) {
   }
   const body =
     `\n    const projects = ${literal(site.projects, 4)};\n` +
-    `    const focusAreas = ${literal(site.focusAreas, 4)};\n`;
+    `    const focusAreas = ${literal(site.focusAreas, 4)};\n` +
+    `    const news = ${literal(site.news ?? [], 4)};\n`;
   return template.replace(REGION, (_, open, __, close) => open + body + close);
 }
 

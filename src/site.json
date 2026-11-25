@@ -27,6 +27,45 @@
       "desc": "Systems that surface uncertainty instead of hiding it."
     }
   ],
+  "news": [
+    {
+      "id": "news-bwxpixel-v02",
+      "date": "25 Nov 2026",
+      "tag": "Release · Benchmark",
+      "project": "bwxPixel",
+      "projectAnchor": "#proj-bwxpixel",
+      "title": "bwxPixel v0.2.0 — Blackwell __dp4a Kernel, Split-Weight AVX2 Baseline & Memory-Hierarchy Benchmarks",
+      "summary": "Rebuilt both the CUDA and CPU paths of bwxPixel (plus a multi-arch sm_75–sm_120 C ABI DLL) and measured them on an RTX 5080 + i7-14700KF while keeping L2-resident, cold-DRAM, and PCIe round-trip regimes strictly separate. Replacing a cache-thrashing 16 MB lookup table with a split-weight [77, 51, 29, 99] AVX2 vpmaddubsw kernel and non-temporal streaming stores lifted the CPU baseline up to 27.3× (760.9 GB/s in cache; 64.2 GB/s cold DDR5). On the GPU, 128-bit vectorized __dp4a + dual-pipe PRMT/ALU kernels sustain 902.2 GB/s (94.0% of GDDR7 peak) across a >512 MiB multi-buffer ring and 4.90 TB/s (8.47 µs at 4K) in hot L2 via CUDA Graph — verified bit-exact across all 16,777,216 RGB colors and unaligned ROI pointers.",
+      "metrics": [
+        {
+          "label": "GPU Hot L2 (4K Graph)",
+          "value": "4.90 TB/s · 8.47 µs"
+        },
+        {
+          "label": "GPU Cold GDDR7",
+          "value": "902.2 GB/s · 94.0% peak"
+        },
+        {
+          "label": "CPU Split-Weight AVX2",
+          "value": "760.9 GB/s · 27.3× vs LUT"
+        },
+        {
+          "label": "Full-Gamut Verification",
+          "value": "16,777,216 RGB bit-exact"
+        }
+      ],
+      "links": [
+        {
+          "label": "RTX 5080 Report ↗",
+          "url": "https://github.com/TerrenceYeYang/bwxPixel/blob/master/docs/BENCHMARK_RTX5080.md"
+        },
+        {
+          "label": "Repository ↗",
+          "url": "https://github.com/TerrenceYeYang/bwxPixel"
+        }
+      ]
+    }
+  ],
   "projects": [
     {
       "num": "01",
@@ -210,6 +249,25 @@
       "liveUrl": "https://github.com/TerrenceYeYang/occ-benchmark/releases/tag/v1.0.0",
       "liveLabel": "v1.0 Binary ↗",
       "thumbSrc": "assets/thumbs/occ-light-transfer-module-v1.webp"
+    },
+    {
+      "num": "09",
+      "id": "proj-bwxpixel",
+      "thumbId": "thumb-bwxpixel",
+      "anchor": "#proj-bwxpixel",
+      "name": "bwxPixel",
+      "tagline": "Blackwell CUDA · Split-Weight AVX2",
+      "description": "An ultra-low-latency RGBX/RGBA-to-grayscale library and standalone C ABI DLL for NVIDIA Blackwell GPUs and x86-64 CPUs. Pairs 128-bit vectorized __dp4a + dual-pipe PRMT/ALU kernels (with automatic unaligned-ROI fallback) against an honest split-weight AVX2 + non-temporal CPU baseline — reporting hot-L2 (4.90 TB/s), multi-buffer cold GDDR7 (902.2 GB/s, 94% of peak), and PCIe end-to-end numbers separately, verified bit-exact across all 16,777,216 RGB colors.",
+      "stack": [
+        "CUDA / Blackwell",
+        "AVX2 SIMD",
+        "C ABI DLL"
+      ],
+      "stars": 0,
+      "repoUrl": "https://github.com/TerrenceYeYang/bwxPixel",
+      "liveUrl": "https://github.com/TerrenceYeYang/bwxPixel/blob/master/docs/BENCHMARK_RTX5080.md",
+      "liveLabel": "RTX 5080 Report ↗",
+      "thumbSrc": "assets/thumbs/bwxpixel-rtx5080-benchmark.webp"
     }
   ]
 }

@@ -103,7 +103,19 @@ test('resources list and read round-trip', async () => {
   const { body: list } = await rpc({ jsonrpc: '2.0', id: 1, method: 'resources/list' });
   const uris = list.result.resources.map((r) => r.uri);
   assert.ok(uris.includes('homepage://profile'));
+  assert.ok(uris.includes('homepage://news'));
   assert.ok(uris.includes('homepage://projects/chipspot'));
+  assert.ok(uris.includes('homepage://projects/bwxpixel'));
+
+  const { body: newsRead } = await rpc({
+    jsonrpc: '2.0',
+    id: 3,
+    method: 'resources/read',
+    params: { uri: 'homepage://news' },
+  });
+  const newsItems = JSON.parse(newsRead.result.contents[0].text);
+  assert.ok(Array.isArray(newsItems) && newsItems.length >= 1);
+  assert.equal(newsItems[0].project, 'bwxPixel');
 
   const { body: read } = await rpc({
     jsonrpc: '2.0',
