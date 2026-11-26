@@ -507,7 +507,7 @@
       <h2 style="font-family:'Source Serif 4', serif; font-size:32px; font-weight:600; margin:0 0 36px;">News &amp; Releases</h2>
 
       <div style="display:flex; flex-direction:column; gap:24px; max-width:980px;">
-        <sc-for list="{{ news }}" as="item" hint-placeholder-count="1">
+        <sc-for list="{{ news }}" as="item" hint-placeholder-count="2">
           <article id="{{ item.id }}" style="background:#0f1310; border:1px solid rgba(255,255,255,0.08); padding:32px; display:flex; flex-direction:column; gap:20px; scroll-margin-top:24px;">
             <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:12px;">
               <div style="display:flex; flex-wrap:wrap; align-items:center; gap:12px; font-family:'IBM Plex Mono', monospace; font-size:11.5px;">
@@ -515,7 +515,12 @@
                 <span style="color:#565f59;">·</span>
                 <span style="color:#c7cdc8; border:1px solid rgba(255,255,255,0.14); padding:3px 9px; text-transform:uppercase; letter-spacing:0.04em; font-size:10.5px;">{{ item.tag }}</span>
               </div>
-              <a href="{{ item.projectAnchor }}" style="font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:{{ accent }}; text-decoration:none;">Project · {{ item.project }} ↓</a>
+              <sc-if value="{{ item.hasProjectAnchor }}" hint-placeholder-val="{{ true }}">
+                <a href="{{ item.projectAnchor }}" style="font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:{{ accent }}; text-decoration:none;">Project · {{ item.project }} ↓</a>
+              </sc-if>
+              <sc-if value="{{ item.hasUpstream }}" hint-placeholder-val="{{ false }}">
+                <a href="{{ item.upstreamUrl }}" target="_blank" rel="noopener" style="font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:{{ accent }}; text-decoration:none;">Upstream · {{ item.upstreamLabel }} ↗</a>
+              </sc-if>
             </div>
 
             <h3 style="font-family:'Source Serif 4', serif; font-size:clamp(20px,2.4vw,25px); font-weight:600; line-height:1.3; margin:0; color:#eef1ec;">{{ item.title }}</h3>
@@ -869,6 +874,43 @@ class Component extends DCLogic {
     ];
     const news = [
       {
+        "id": "news-weknora-5955",
+        "date": "25 Nov 2026",
+        "tag": "Open Source · Merged PR",
+        "upstreamLabel": "Tencent/WeKnora",
+        "upstreamUrl": "https://github.com/Tencent/WeKnora",
+        "title": "Merged in Tencent/WeKnora (#5955) — Scope Postgres HNSW Fallback Retries to SET LOCAL Failures",
+        "summary": "Upstreamed a transaction error-propagation fix to Tencent/WeKnora's PostgreSQL/pgvector retriever (VectorRetrieve). Previously, HNSW compatibility retries were triggered by inspecting the final transaction error text — allowing a BEGIN, query, or COMMIT failure that mentioned an HNSW setting name to launch an unrelated fallback query and overwrite the real failure. PR #5955 restricts retry eligibility strictly to the two SET LOCAL failure paths while preserving rollback-before-retry and retrieval SQL semantics, backed by deterministic red/green SQL-mock regression tests.",
+        "metrics": [
+          {
+            "label": "Upstream Repo",
+            "value": "Tencent/WeKnora · 38k+ ★"
+          },
+          {
+            "label": "Subsystem",
+            "value": "Postgres / pgvector RAG"
+          },
+          {
+            "label": "Contribution",
+            "value": "PR #5955 · Merged (+147/−4)"
+          },
+          {
+            "label": "Regression Suite",
+            "value": "Red/Green SQL-Mock Cases"
+          }
+        ],
+        "links": [
+          {
+            "label": "Pull Request #5955 ↗",
+            "url": "https://github.com/Tencent/WeKnora/pull/5955"
+          },
+          {
+            "label": "Tencent/WeKnora ↗",
+            "url": "https://github.com/Tencent/WeKnora"
+          }
+        ]
+      },
+      {
         "id": "news-bwxpixel-v02",
         "date": "25 Nov 2026",
         "tag": "Release · Benchmark",
@@ -908,6 +950,7 @@ class Component extends DCLogic {
     ];
     // ── end generated ──
     const mapped = projects.map(p => ({ ...p, showThumb: !p.posts && !p.graphic, showVlaGraphic: p.graphic === "vla", postCount: p.posts ? p.posts.length + " open" : null, liveLabel: p.liveLabel ?? "Live ↗" }));
+    const mappedNews = news.map(n => ({ ...n, hasProjectAnchor: Boolean(n.projectAnchor), hasUpstream: Boolean(n.upstreamUrl) }));
     return {
       accent: this.props.accentColor ?? "#9a9a92",
       cardMinWidth: (this.props.denseMode ?? false) ? 260 : 320,
@@ -915,7 +958,7 @@ class Component extends DCLogic {
       projects: mapped,
       heroProjects: mapped,
       focusAreas,
-      news
+      news: mappedNews
     };
   }
 }

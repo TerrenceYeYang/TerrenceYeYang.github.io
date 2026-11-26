@@ -29,6 +29,43 @@
   ],
   "news": [
     {
+      "id": "news-weknora-5955",
+      "date": "25 Nov 2026",
+      "tag": "Open Source · Merged PR",
+      "upstreamLabel": "Tencent/WeKnora",
+      "upstreamUrl": "https://github.com/Tencent/WeKnora",
+      "title": "Merged in Tencent/WeKnora (#5955) — Scope Postgres HNSW Fallback Retries to SET LOCAL Failures",
+      "summary": "Upstreamed a transaction error-propagation fix to Tencent/WeKnora's PostgreSQL/pgvector retriever (VectorRetrieve). Previously, HNSW compatibility retries were triggered by inspecting the final transaction error text — allowing a BEGIN, query, or COMMIT failure that mentioned an HNSW setting name to launch an unrelated fallback query and overwrite the real failure. PR #5955 restricts retry eligibility strictly to the two SET LOCAL failure paths while preserving rollback-before-retry and retrieval SQL semantics, backed by deterministic red/green SQL-mock regression tests.",
+      "metrics": [
+        {
+          "label": "Upstream Repo",
+          "value": "Tencent/WeKnora · 38k+ ★"
+        },
+        {
+          "label": "Subsystem",
+          "value": "Postgres / pgvector RAG"
+        },
+        {
+          "label": "Contribution",
+          "value": "PR #5955 · Merged (+147/−4)"
+        },
+        {
+          "label": "Regression Suite",
+          "value": "Red/Green SQL-Mock Cases"
+        }
+      ],
+      "links": [
+        {
+          "label": "Pull Request #5955 ↗",
+          "url": "https://github.com/Tencent/WeKnora/pull/5955"
+        },
+        {
+          "label": "Tencent/WeKnora ↗",
+          "url": "https://github.com/Tencent/WeKnora"
+        }
+      ]
+    },
+    {
       "id": "news-bwxpixel-v02",
       "date": "25 Nov 2026",
       "tag": "Release · Benchmark",

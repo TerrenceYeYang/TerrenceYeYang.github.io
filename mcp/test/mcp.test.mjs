@@ -114,8 +114,12 @@ test('resources list and read round-trip', async () => {
     params: { uri: 'homepage://news' },
   });
   const newsItems = JSON.parse(newsRead.result.contents[0].text);
-  assert.ok(Array.isArray(newsItems) && newsItems.length >= 1);
-  assert.equal(newsItems[0].project, 'bwxPixel');
+  assert.ok(Array.isArray(newsItems) && newsItems.length >= 2);
+  assert.equal(newsItems[0].upstreamLabel, 'Tencent/WeKnora');
+  assert.equal(newsItems[1].project, 'bwxPixel');
+
+  const ossSearch = await call('search', { query: 'weknora' });
+  assert.equal(ossSearch.newsMatches.length, 1);
 
   const { body: read } = await rpc({
     jsonrpc: '2.0',

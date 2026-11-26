@@ -147,14 +147,20 @@ const TOOLS = [
     },
     handler: ({ query }) => {
       const needle = String(query ?? '').trim().toLowerCase();
-      if (!needle) return { count: 0, query, matches: [] };
+      if (!needle) return { count: 0, query, matches: [], newsMatches: [] };
       const matches = PROJECTS.filter((p) =>
         [p.name, p.tagline, p.description, p.stack.join(' ')]
           .join(' ')
           .toLowerCase()
           .includes(needle),
       );
-      return { count: matches.length, query, matches };
+      const newsMatches = NEWS.filter((n) =>
+        [n.title, n.tag, n.summary, n.project ?? '', n.upstreamLabel ?? '']
+          .join(' ')
+          .toLowerCase()
+          .includes(needle),
+      );
+      return { count: matches.length, query, matches, newsMatches };
     },
   },
   {
