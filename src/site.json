@@ -9,6 +9,7 @@
       "Alongside that, I build tools for measuring and understanding model behavior — local benchmark dashboards, evidence repositories, and small community products — because good research needs good instruments."
     ],
     "links": {
+      "email": "terrence.ye.yang@gmail.com",
       "github": "https://github.com/TerrenceYeYang",
       "homepage": "https://terrenceyeyang.github.io/"
     }
@@ -93,12 +94,16 @@
       ],
       "links": [
         {
-          "label": "RTX 5080 Report ↗",
-          "url": "https://github.com/TerrenceYeYang/bwxPixel/blob/master/docs/BENCHMARK_RTX5080.md"
+          "label": "v0.2 Binary Release ↗",
+          "url": "https://github.com/TerrenceYeYang/bwxPixel-public/releases/tag/v0.2.0"
         },
         {
-          "label": "Repository ↗",
-          "url": "https://github.com/TerrenceYeYang/bwxPixel"
+          "label": "RTX 5080 Report ↗",
+          "url": "https://github.com/TerrenceYeYang/bwxPixel-public/blob/master/docs/BENCHMARK_RTX5080.md"
+        },
+        {
+          "label": "Public Repo ↗",
+          "url": "https://github.com/TerrenceYeYang/bwxPixel-public"
         }
       ]
     }
@@ -301,9 +306,9 @@
         "C ABI DLL"
       ],
       "stars": 0,
-      "repoUrl": "https://github.com/TerrenceYeYang/bwxPixel",
-      "liveUrl": "https://github.com/TerrenceYeYang/bwxPixel/blob/master/docs/BENCHMARK_RTX5080.md",
-      "liveLabel": "RTX 5080 Report ↗",
+      "repoUrl": "https://github.com/TerrenceYeYang/bwxPixel-public",
+      "liveUrl": "https://github.com/TerrenceYeYang/bwxPixel-public/releases/tag/v0.2.0",
+      "liveLabel": "v0.2 Binary ↗",
       "thumbSrc": "assets/thumbs/bwxpixel-rtx5080-benchmark.webp"
     }
   ]
